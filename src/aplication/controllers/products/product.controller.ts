@@ -11,3 +11,11 @@ export const get_all_products = (c : Context)=>{
 export const get_product_by_id = (c:Context)=>{
     return c.json({test:"controller"})
 }
+
+export const update_product = (c:Context) => {
+    return c.json({test:"controller"})
+}
+
+export const delete_product = (c: Context) => {
+    return c.json({test:"controller"})
+}

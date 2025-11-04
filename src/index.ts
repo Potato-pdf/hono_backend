@@ -14,7 +14,7 @@ app.use(logger())
 app.use(prettyJSON())
 
 //routes
-app.route("/usuario", user)
+app.route("/user", user)
 app.route("/product", product)
 
 //serve

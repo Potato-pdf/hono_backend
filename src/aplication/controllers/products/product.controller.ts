@@ -1,7 +1,7 @@
 import { Context } from "hono"
 import { AppDataSource } from "../../../Infrestructure/config/database/db.conection"
 import { product_entitie } from "../../../domain/entities/products/products.entitie"
-import { producto_iinterface } from "../../../domain/interfaces/product.interface";
+import { producto_iinterface } from "../../../domain/interfaces/product/product.interface";
 
 const product_repository = AppDataSource.getRepository(product_entitie);
 

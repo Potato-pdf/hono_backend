@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { user } from "../../../domain/entities/user/user.entitie";
+import {  user_entitie } from "../../../domain/entities/user/user.entitie";
 import { product_entitie } from "../../../domain/entities/products/products.entitie";
 
 
@@ -13,5 +13,5 @@ export const AppDataSource = new DataSource({
     database: "hono_db",
     synchronize: true,
     logging: false,
-    entities: [user, product_entitie],
+    entities: [user_entitie, product_entitie],
 });

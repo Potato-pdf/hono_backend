@@ -1,14 +1,21 @@
 import { Context } from "hono"
 import { AppDataSource } from "../../../Infrestructure/config/database/db.conection"
-import { product } from "../../../domain/entities/products/products.entitie"
+import { product_entitie } from "../../../domain/entities/products/products.entitie"
+import { producto_iinterface } from "../../../domain/interfaces/product.interface";
 
-const product_repository = AppDataSource.getRepository(product);
+const product_repository = AppDataSource.getRepository(product_entitie);
 
 export const create_product = async (c : Context)=>{
     try {
-        const prod = await c.req.json()
-        return c.json({test:"controller"})
-        
+        const prod : producto_iinterface= await c.req.json()
+        const product = await product_repository.create({
+            name:prod.name,
+            price:prod.price,
+            description:prod.description,
+            stock:prod.stock
+        })
+        c.status(201)
+        return c.json({test:"succes create", product})
     }
     catch(err){
         console.error(`error:${err}}`)

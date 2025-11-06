@@ -9,5 +9,9 @@ export class product{
     @Column()
     name!:string
     @Column()
+    description!:string
+    @Column()
     price!:number
+    @Column()
+    stock!:number
 }

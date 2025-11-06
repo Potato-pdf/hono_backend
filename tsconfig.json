@@ -4,6 +4,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "experimentalDecorators": true,
-    
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true
   }
 }

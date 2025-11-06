@@ -1,7 +1,20 @@
 import { Context } from "hono"
+import { AppDataSource } from "../../../Infrestructure/config/database/db.conection"
+import { product } from "../../../domain/entities/products/products.entitie"
+
+const product_repository = AppDataSource.getRepository(product);
 
 export const create_product = (c : Context)=>{
+    try{
+        
     return c.json({test:"controller"})
+        
+    }
+    catch(err){
+        console.error(`error:${err}}`)
+        return c.json({error:"Server error", err}, 400
+        );
+    }
 }
 
 export const get_all_products = (c : Context)=>{

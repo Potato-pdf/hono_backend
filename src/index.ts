@@ -5,6 +5,7 @@ import { prettyJSON } from 'hono/pretty-json'
 import { user } from './Infrestructure/routes/user/user.routes'
 import { product } from './Infrestructure/routes/products/products.routes'
 import { AppDataSource } from './Infrestructure/config/database/db.conection'
+import { auth } from './Infrestructure/routes/auth/auth.routes'
 
 const app = new Hono()
 const port = 8000
@@ -17,6 +18,7 @@ app.use(prettyJSON())
 //routes
 app.route("/user", user)
 app.route("/product", product)
+app.route("/auth", auth)
 
 //Server
 AppDataSource.initialize()

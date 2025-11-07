@@ -18,10 +18,12 @@ export const create_user = async (c: Context) => {
         if (existing_user) {
         return c.json({ error: "Email already registered" }, 400);
     }
+
+    const hashed_pass = await Bun.password.hash(usr.password)
         const user = user_repository.create({
             name: usr.name,
             email: usr.email,
-            password: usr.password
+            password: hashed_pass
         });
         await user_repository.save(user);
         c.status(201)
@@ -33,6 +35,8 @@ export const create_user = async (c: Context) => {
     }
 }
 
-export const get_all_users = (c: Context) => {
-    return c.json({ test: "controler" })
+export const get_all_users = async (c: Context) => {
+    const all_users = await user_repository.find({})
+    c.status(201)
+    return c.json({ test: "Succesfull get", all_users })
 }

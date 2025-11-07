@@ -61,9 +61,31 @@ export const get_product_by_id = async (c: Context) => {
 
 
 
-export const update_product = (c: Context) => {
-    return c.json({ test: "controller" })
-}
+export const update_product = async (c: Context) => {
+  try {
+    const id = c.req.param("id");
+    const body = await c.req.json(); 
+
+    const product_to_update = await product_repository.findOneBy({ id: parseInt(id) });
+    if (!product_to_update) {
+      c.status(404);
+      return c.json({ error: "Product not found" });
+    }
+
+    product_repository.merge(product_to_update, body); 
+    const updated = await product_repository.save(product_to_update);
+
+    c.status(200);
+    return c.json({
+      message: "Product updated successfully",
+      data: updated,
+    });
+  } catch (err) {
+    console.error("Error:", err);
+    c.status(500);
+    return c.json({ error: "Server error", details: err });
+  }
+};
 
 
 export const delete_product = async (c: Context) => {

@@ -43,15 +43,15 @@ export const get_all_products = async (c: Context) => {
 export const get_product_by_id = async (c: Context) => {
     try {
         const id = c.req.param("id");
-        const product = await product_repository.findOneBy({ id: parseInt(id) });
+        const product_to_find = await product_repository.findOneBy({ id: parseInt(id) });
 
-        if (!product) {
+        if (!product_to_find) {
             c.status(404);
             return c.json({ error: "Product not found" });
         }
 
         c.status(200);
-        return c.json({ message: "Product found", data: product });
+        return c.json({ message: "Product found", data: product_to_find });
     } catch (err) {
         console.error("Error:", err);
         c.status(500);

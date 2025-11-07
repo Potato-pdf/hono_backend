@@ -25,7 +25,10 @@ export const auth_logic = async (c : Context) =>{
             }
 
             const token = createToken(user_to_validate);
-            return c.json({ message: "Login successful", token, user: user_to_validate })
+            return c.json({ message: "Login successful", token, user:{
+                id: user_to_validate.id,
+                name : user_to_validate.name
+            } })
         }     
         catch (err) {
         console.error(`Error: ${err}`)

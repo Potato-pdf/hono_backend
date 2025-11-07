@@ -2,7 +2,7 @@ import { Context } from "hono"
 import { AppDataSource } from "../../../Infrestructure/config/database/db.conection"
 import { user_interface } from "../../../domain/interfaces/user/user.interface"
 import { user_entitie } from "../../../domain/entities/user/user.entitie"
-import { toCamelCase } from "../../../domain/utils/upper.case.utils"
+import { toTitleCase } from "../../../domain/utils/upper.case.utils"
 
 const user_repository = AppDataSource.getRepository(user_entitie)
 
@@ -21,7 +21,7 @@ export const create_user = async (c: Context) => {
     }
 
     const hashed_pass = await Bun.password.hash(usr.password)
-    const camell_name = await toCamelCase(usr.name)
+    const camell_name = await toTitleCase(usr.name)
         const user = user_repository.create({
             name: camell_name,
             email: usr.email,

@@ -27,6 +27,7 @@ AppDataSource.initialize()
   Bun.serve({
   port :port,
   fetch: app.fetch
+
 });
   console.log(`Server it is up on ${port}`)})
   
